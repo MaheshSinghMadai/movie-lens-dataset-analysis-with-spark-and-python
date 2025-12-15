@@ -39,7 +39,6 @@ df = spark.createDataFrame(data,["text"])
 #apply udf in a dataframe query
 df.selectExpr("text","count_hashtags(text) as num_hashtags").show()
 
-
 #apply udtf with a LATERAL JOIN
 df.createOrReplaceTempView("tweets")
 spark.sql("select text, hashtag from tweets, LATERAL extract_hashtags(text)").show()
